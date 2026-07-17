@@ -1,1 +1,1 @@
-<img src="https://skillicons.dev/icons?i=python,django,html,sqlite3" />
+<img src="https://skillicons.dev/icons?i=python,django,html,sqlite" />
