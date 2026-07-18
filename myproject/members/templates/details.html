@@ -6,11 +6,96 @@
 
 
 {% block content %}
-  <h1>{{ mymember.first_name }} {{ mymember.last_name }}</h1>
-  
-  <p>Phone {{ mymember.phone }}</p>
-  <p>Member since: {{ mymember.joined_date }}</p>
-  
-  <p>Back to <a href="/members">Members</a></p>
-  
+  <style>
+    .member-detail-page {
+      width: 100%;
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem;
+      box-sizing: border-box;
+      background: #fafafa;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+
+    .back-link {
+      align-self: flex-start;
+      margin: 0 auto 1.5rem;
+      width: 100%;
+      max-width: 600px;
+      color: #16a34a;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    .member-card {
+      width: 100%;
+      max-width: 600px;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      padding: 2.5rem 3rem;
+      box-sizing: border-box;
+    }
+
+    .member-card h1 {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 2.25rem;
+      color: #14532d;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid #f0f0f0;
+      padding-bottom: 1rem;
+    }
+
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.95rem 0;
+      border-bottom: 1px solid #f3f4f6;
+      font-size: 1.05rem;
+    }
+
+    .detail-row:last-of-type {
+      border-bottom: none;
+    }
+
+    .detail-label {
+      color: #6b7280;
+      font-weight: 500;
+    }
+
+    .detail-value {
+      color: #1f2937;
+      font-weight: 600;
+      text-align: right;
+    }
+  </style>
+
+  <div class="member-detail-page">
+    <a class="back-link" href="/members">&larr; Back to Members</a>
+
+    <div class="member-card">
+      <h1>🎾 {{ mymember.first_name }} {{ mymember.last_name }}</h1>
+
+      <div class="detail-row">
+        <span class="detail-label">Phone</span>
+        <span class="detail-value">{{ mymember.phone }}</span>
+      </div>
+
+      <div class="detail-row">
+        <span class="detail-label">Member since</span>
+        <span class="detail-value">{{ mymember.joined_date }}</span>
+      </div>
+    </div>
+  </div>
 {% endblock %}

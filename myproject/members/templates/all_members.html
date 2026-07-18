@@ -6,14 +6,97 @@
 
 
 {% block content %}
+  <style>
+    .members-page {
+      width: 100%;
+      min-height: 80vh;
+      padding: 3rem 4rem;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: #fafafa;
+    }
 
-  <p><a href="/">HOME</a></p>
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      color: #16a34a;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
 
-  <h1>Members</h1>
-  
-  <ul>
-    {% for x in mymembers %}
-      <li><a href="details/{{ x.id }}">{{ x.first_name }} {{ x.last_name }}</a></li>
-    {% endfor %}
-  </ul>
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    .members-page h1 {
+      font-size: 2.5rem;
+      color: #14532d;
+      margin-bottom: 2rem;
+    }
+
+    .members-grid {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.25rem;
+      padding: 0;
+      margin: 0;
+    }
+
+    .members-grid li {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .members-grid li:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+    }
+
+    .members-grid a {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 1.1rem 1.25rem;
+      color: #1f2937;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .members-grid a::before {
+      content: "🎾";
+      font-size: 1.1rem;
+    }
+
+    .members-grid a:hover {
+      color: #16a34a;
+    }
+
+    .empty-state {
+      color: #6b7280;
+      font-style: italic;
+      padding: 2rem 0;
+      text-align: center;
+    }
+  </style>
+
+  <div class="members-page">
+    <a class="back-link" href="/">&larr; HOME</a>
+
+    <h1>Members</h1>
+
+    {% if mymembers %}
+      <ul class="members-grid">
+        {% for x in mymembers %}
+          <li><a href="details/{{ x.id }}">{{ x.first_name }} {{ x.last_name }}</a></li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="empty-state">No members yet.</p>
+    {% endif %}
+  </div>
 {% endblock %}
