@@ -1,101 +1,189 @@
 {% extends "master.html" %}
 
 {% block title %}
-  Details about {{ mymember.first_name }} {{ mymember.last_name }}
+{{ mymember.first_name }} {{ mymember.last_name }} | My Tennis Club
 {% endblock %}
 
-
 {% block content %}
-  <style>
-    .member-detail-page {
-      width: 100%;
-      min-height: 80vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 3rem;
-      box-sizing: border-box;
-      background: #fafafa;
-      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#f4fdf6;
+}
+
+.profile-page{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#16a34a,#0f766e);
+    padding:40px 20px;
+}
+
+.profile-card{
+    width:100%;
+    max-width:650px;
+    background:rgba(255,255,255,.15);
+    backdrop-filter:blur(15px);
+    border-radius:25px;
+    padding:40px;
+    text-align:center;
+    color:white;
+    box-shadow:0 20px 40px rgba(0,0,0,.25);
+    animation:fadeIn .7s ease;
+}
+
+.avatar{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    background:white;
+    color:#16a34a;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:45px;
+    font-weight:bold;
+    margin:auto;
+    margin-bottom:25px;
+}
+
+.profile-card h1{
+    font-size:2.5rem;
+    margin-bottom:10px;
+}
+
+.role{
+    color:#d1fae5;
+    margin-bottom:35px;
+    font-size:18px;
+}
+
+.info-box{
+    background:rgba(255,255,255,.1);
+    border-radius:18px;
+    padding:20px;
+    margin-bottom:30px;
+}
+
+.info-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 0;
+    border-bottom:1px solid rgba(255,255,255,.2);
+}
+
+.info-row:last-child{
+    border-bottom:none;
+}
+
+.label{
+    color:#d1fae5;
+    font-weight:500;
+}
+
+.value{
+    font-weight:600;
+}
+
+.back-btn{
+    display:inline-block;
+    padding:14px 35px;
+    background:white;
+    color:#16a34a;
+    text-decoration:none;
+    font-weight:bold;
+    border-radius:50px;
+    transition:.3s;
+}
+
+.back-btn:hover{
+    background:#14532d;
+    color:white;
+    transform:translateY(-4px);
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(30px);
     }
-
-    .back-link {
-      align-self: flex-start;
-      margin: 0 auto 1.5rem;
-      width: 100%;
-      max-width: 600px;
-      color: #16a34a;
-      font-weight: 600;
-      text-decoration: none;
-      font-size: 0.95rem;
+    to{
+        opacity:1;
+        transform:translateY(0);
     }
+}
 
-    .back-link:hover {
-      text-decoration: underline;
-    }
+@media(max-width:768px){
 
-    .member-card {
-      width: 100%;
-      max-width: 600px;
-      background: #ffffff;
-      border: 1px solid #e5e7eb;
-      border-radius: 14px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-      padding: 2.5rem 3rem;
-      box-sizing: border-box;
-    }
+.profile-card{
+    padding:30px 20px;
+}
 
-    .member-card h1 {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 2.25rem;
-      color: #14532d;
-      margin-bottom: 1.5rem;
-      border-bottom: 1px solid #f0f0f0;
-      padding-bottom: 1rem;
-    }
+.profile-card h1{
+    font-size:2rem;
+}
 
-    .detail-row {
-      display: flex;
-      justify-content: space-between;
-      padding: 0.95rem 0;
-      border-bottom: 1px solid #f3f4f6;
-      font-size: 1.05rem;
-    }
+.info-row{
+    flex-direction:column;
+    gap:8px;
+    text-align:center;
+}
 
-    .detail-row:last-of-type {
-      border-bottom: none;
-    }
+}
 
-    .detail-label {
-      color: #6b7280;
-      font-weight: 500;
-    }
+</style>
 
-    .detail-value {
-      color: #1f2937;
-      font-weight: 600;
-      text-align: right;
-    }
-  </style>
+<div class="profile-page">
 
-  <div class="member-detail-page">
-    <a class="back-link" href="/members">&larr; Back to Members</a>
+    <div class="profile-card">
 
-    <div class="member-card">
-      <h1>🎾 {{ mymember.first_name }} {{ mymember.last_name }}</h1>
+        <div class="avatar">
+            {{ mymember.first_name|slice:":1" }}{{ mymember.last_name|slice:":1" }}
+        </div>
 
-      <div class="detail-row">
-        <span class="detail-label">Phone</span>
-        <span class="detail-value">{{ mymember.phone }}</span>
-      </div>
+        <h1>
+            {{ mymember.first_name }} {{ mymember.last_name }}
+        </h1>
 
-      <div class="detail-row">
-        <span class="detail-label">Member since</span>
-        <span class="detail-value">{{ mymember.joined_date }}</span>
-      </div>
+        <p class="role">
+            🎾 Tennis Club Member
+        </p>
+
+        <div class="info-box">
+
+            <div class="info-row">
+                <span class="label">📞 Phone</span>
+                <span class="value">{{ mymember.phone }}</span>
+            </div>
+
+            <div class="info-row">
+                <span class="label">📅 Joined</span>
+                <span class="value">{{ mymember.joined_date }}</span>
+            </div>
+
+            <div class="info-row">
+                <span class="label">🆔 Member ID</span>
+                <span class="value">#{{ mymember.id }}</span>
+            </div>
+
+        </div>
+
+        <a href="{% url 'members' %}" class="back-btn">
+            ← Back to Members
+        </a>
+
     </div>
-  </div>
+
+</div>
+
 {% endblock %}

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Wrong Address</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body{
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            min-height:100vh;
+            background:linear-gradient(135deg,#4facfe,#00f2fe);
+            overflow:hidden;
+        }
+
+        .container{
+            text-align:center;
+            background:rgba(255,255,255,0.15);
+            backdrop-filter:blur(15px);
+            padding:50px;
+            border-radius:25px;
+            box-shadow:0 15px 35px rgba(0,0,0,0.25);
+            color:white;
+            animation:fadeIn 1s ease;
+        }
+
+        .error-code{
+            font-size:120px;
+            font-weight:bold;
+            text-shadow:3px 3px 10px rgba(0,0,0,0.3);
+            animation:float 3s ease-in-out infinite;
+        }
+
+        h1{
+            font-size:40px;
+            margin-bottom:15px;
+        }
+
+        p{
+            font-size:18px;
+            color:#f0f0f0;
+            margin-bottom:30px;
+        }
+
+        .btn{
+            display:inline-block;
+            padding:15px 35px;
+            text-decoration:none;
+            background:white;
+            color:#2193b0;
+            font-weight:bold;
+            border-radius:50px;
+            transition:.3s;
+        }
+
+        .btn:hover{
+            background:#2193b0;
+            color:white;
+            transform:translateY(-3px);
+            box-shadow:0 8px 20px rgba(0,0,0,.3);
+        }
+
+        @keyframes float{
+            0%,100%{
+                transform:translateY(0);
+            }
+            50%{
+                transform:translateY(-15px);
+            }
+        }
+
+        @keyframes fadeIn{
+            from{
+                opacity:0;
+                transform:scale(.8);
+            }
+            to{
+                opacity:1;
+                transform:scale(1);
+            }
+        }
+
+        .circle{
+            position:absolute;
+            border-radius:50%;
+            background:rgba(255,255,255,.15);
+            animation:move 8s linear infinite;
+        }
+
+        .circle:nth-child(1){
+            width:250px;
+            height:250px;
+            top:-80px;
+            left:-80px;
+        }
+
+        .circle:nth-child(2){
+            width:180px;
+            height:180px;
+            bottom:-50px;
+            right:-50px;
+        }
+
+        @keyframes move{
+            0%{
+                transform:translateY(0) rotate(0deg);
+            }
+            50%{
+                transform:translateY(-20px) rotate(180deg);
+            }
+            100%{
+                transform:translateY(0) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="circle"></div>
+    <div class="circle"></div>
+
+    <div class="container">
+        <div class="error-code">404</div>
+
+        <h1>Oops! Wrong Address</h1>
+
+        <p>
+            The page you're looking for doesn't exist or has been moved.
+            Double-check the URL or head back to the homepage.
+        </p>
+
+        <a href="/" class="btn">🏠 Go Home</a>
+    </div>
+
+</body>
+</html>
