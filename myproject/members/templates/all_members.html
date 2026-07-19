@@ -16,12 +16,13 @@ My Tennis Club - Members
 }
 
 body{
-    background:#f4fdf6;
+    background:#ffffff;
+    color:#111;
 }
 
 .members-container{
     min-height:100vh;
-    background:linear-gradient(135deg,#16a34a,#0f766e);
+    background:#ffffff;
     padding:50px 8%;
 }
 
@@ -34,33 +35,35 @@ body{
 }
 
 .back-btn{
-    color:white;
+    color:#111;
     text-decoration:none;
     font-weight:600;
     padding:12px 25px;
-    border:2px solid rgba(255,255,255,.3);
+    border:2px solid #111;
     border-radius:50px;
     transition:.3s;
+    background:#fff;
 }
 
 .back-btn:hover{
-    background:white;
-    color:#16a34a;
+    background:#111;
+    color:#fff;
 }
 
 .heading{
     text-align:center;
-    color:white;
+    color:#111;
     margin-bottom:45px;
 }
 
 .heading h1{
     font-size:3rem;
+    font-weight:700;
 }
 
 .heading p{
     margin-top:10px;
-    opacity:.9;
+    color:#666;
     font-size:18px;
 }
 
@@ -71,18 +74,20 @@ body{
 }
 
 .member-card{
-    background:rgba(255,255,255,.15);
-    backdrop-filter:blur(12px);
+    background:#fff;
+    border:2px solid #111;
     border-radius:20px;
     padding:25px;
     text-align:center;
     transition:.3s;
-    box-shadow:0 10px 25px rgba(0,0,0,.15);
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
 }
 
 .member-card:hover{
-    transform:translateY(-10px);
-    box-shadow:0 20px 35px rgba(0,0,0,.25);
+    transform:translateY(-8px);
+    background:#111;
+    color:#fff;
+    box-shadow:0 15px 30px rgba(0,0,0,.2);
 }
 
 .avatar{
@@ -90,45 +95,73 @@ body{
     height:80px;
     margin:auto;
     border-radius:50%;
-    background:white;
-    color:#16a34a;
+    background:#111;
+    color:#fff;
     display:flex;
     justify-content:center;
     align-items:center;
     font-size:30px;
     font-weight:bold;
     margin-bottom:20px;
+    transition:.3s;
+}
+
+.member-card:hover .avatar{
+    background:#fff;
+    color:#111;
 }
 
 .member-card h2{
-    color:white;
+    color:#111;
     margin-bottom:10px;
+    transition:.3s;
+}
+
+.member-card:hover h2{
+    color:#fff;
 }
 
 .member-card p{
-    color:#d1fae5;
+    color:#666;
     margin-bottom:25px;
+    transition:.3s;
+}
+
+.member-card:hover p{
+    color:#ddd;
 }
 
 .view-btn{
     display:inline-block;
     text-decoration:none;
-    background:white;
-    color:#16a34a;
+    background:#111;
+    color:#fff;
     padding:12px 30px;
     border-radius:40px;
     font-weight:bold;
+    border:2px solid #111;
     transition:.3s;
 }
 
 .view-btn:hover{
-    background:#14532d;
-    color:white;
+    background:#fff;
+    color:#111;
+}
+
+.member-card:hover .view-btn{
+    background:#fff;
+    color:#111;
+}
+
+.member-card:hover .view-btn:hover{
+    background:#111;
+    color:#fff;
+    border-color:#fff;
 }
 
 .empty{
     text-align:center;
-    color:white;
+    color:#111;
     font-size:22px;
     margin-top:80px;
 }
@@ -145,6 +178,7 @@ body{
 }
 
 }
+
 
 </style>
 
