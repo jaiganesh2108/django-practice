@@ -15,7 +15,8 @@ My Tennis Club
 }
 
 body{
-    background:#f5fff8;
+    background:#ffffff;
+    color:#111;
 }
 
 .hero{
@@ -23,7 +24,7 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    background:linear-gradient(135deg,#1db954,#0f9b8e);
+    background:#ffffff;
     overflow:hidden;
     position:relative;
     padding:20px;
@@ -34,7 +35,7 @@ body{
     content:"🎾";
     position:absolute;
     font-size:120px;
-    opacity:.15;
+    opacity:.08;
     animation:float 6s ease-in-out infinite;
 }
 
@@ -62,17 +63,18 @@ body{
     max-width:900px;
     width:100%;
     text-align:center;
-    color:white;
-    background:rgba(255,255,255,.15);
-    backdrop-filter:blur(12px);
+    color:#111;
+    background:#fff;
+    border:2px solid #111;
     border-radius:25px;
     padding:60px;
-    box-shadow:0 15px 40px rgba(0,0,0,.25);
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
 }
 
 .badge{
     display:inline-block;
-    background:rgba(255,255,255,.2);
+    background:#111;
+    color:#fff;
     padding:8px 20px;
     border-radius:30px;
     margin-bottom:25px;
@@ -82,11 +84,12 @@ body{
 h1{
     font-size:4rem;
     margin-bottom:20px;
+    color:#111;
 }
 
 .subtitle{
     font-size:1.4rem;
-    opacity:.95;
+    color:#444;
     margin-bottom:20px;
 }
 
@@ -95,7 +98,7 @@ h1{
     line-height:1.8;
     max-width:650px;
     margin:auto;
-    opacity:.9;
+    color:#666;
 }
 
 .stats{
@@ -106,32 +109,47 @@ h1{
     flex-wrap:wrap;
 }
 
+.stat{
+    padding:15px 25px;
+    border:1px solid #ddd;
+    border-radius:15px;
+    min-width:150px;
+    transition:.3s;
+}
+
+.stat:hover{
+    background:#111;
+    color:#fff;
+}
+
 .stat h2{
     font-size:2rem;
+    margin-bottom:8px;
 }
 
 .stat p{
-    opacity:.8;
+    color:inherit;
 }
 
 .btn{
     display:inline-block;
     margin-top:20px;
     padding:15px 40px;
-    background:white;
-    color:#16a34a;
+    background:#111;
+    color:#fff;
     text-decoration:none;
     font-weight:bold;
+    border:2px solid #111;
     border-radius:50px;
     transition:.3s;
     font-size:18px;
 }
 
 .btn:hover{
+    background:#fff;
+    color:#111;
     transform:translateY(-5px);
-    box-shadow:0 10px 25px rgba(0,0,0,.25);
-    background:#14532d;
-    color:white;
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
 }
 
 @media(max-width:768px){
@@ -149,9 +167,15 @@ h1{
 }
 
 .stats{
-    gap:25px;
+    gap:20px;
 }
+
+.stat{
+    width:100%;
 }
+
+}
+
 </style>
 
 <div class="hero">
