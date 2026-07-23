@@ -7,219 +7,478 @@ My Tennis Club
 {% block content %}
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap');
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:'Segoe UI',sans-serif;
+}
+
+:root{
+    --clubhouse:#152219;
+    --clubhouse-2:#1c3024;
+    --chalk:#f5f1e4;
+    --clay:#b8532f;
+    --turf:#3f5c42;
+    --ink:#182019;
+    --muted:#5c675f;
+    --line:rgba(245,241,228,0.16);
+    --border-light:#e2ddce;
 }
 
 body{
-    background:#ffffff;
-    color:#111;
+    background:var(--chalk);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
 }
 
-.hero{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:#ffffff;
-    overflow:hidden;
-    position:relative;
-    padding:20px;
-}
+a{ color:inherit; }
 
-.hero::before,
-.hero::after{
-    content:"🎾";
-    position:absolute;
-    font-size:120px;
-    opacity:.08;
-    animation:float 6s ease-in-out infinite;
-}
-
-.hero::before{
-    top:10%;
-    left:8%;
-}
-
-.hero::after{
-    bottom:10%;
-    right:8%;
-    animation-delay:3s;
-}
-
-@keyframes float{
-    0%,100%{
-        transform:translateY(0) rotate(0deg);
-    }
-    50%{
-        transform:translateY(-25px) rotate(15deg);
-    }
-}
-
-.card{
-    max-width:900px;
-    width:100%;
-    text-align:center;
-    color:#111;
-    background:#fff;
-    border:2px solid #111;
-    border-radius:25px;
-    padding:60px;
-    box-shadow:0 15px 35px rgba(0,0,0,.08);
-}
-
-.badge{
-    display:inline-block;
-    background:#111;
-    color:#fff;
-    padding:8px 20px;
-    border-radius:30px;
-    margin-bottom:25px;
+.tc-page h1,
+.tc-page h2,
+.tc-page h3{
+    font-family:'Fraunces',serif;
     font-weight:600;
+    letter-spacing:-0.01em;
 }
 
-h1{
-    font-size:4rem;
-    margin-bottom:20px;
-    color:#111;
+.tc-eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-family:'Space Mono',monospace;
+    font-size:0.72rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
 }
 
-.subtitle{
-    font-size:1.4rem;
-    color:#444;
-    margin-bottom:20px;
+/* ---------- HERO ---------- */
+.hero{
+    position:relative;
+    background:radial-gradient(120% 140% at 50% 0%, var(--clubhouse-2) 0%, var(--clubhouse) 60%);
+    color:var(--chalk);
+    padding:100px 24px 130px;
+    overflow:hidden;
 }
 
-.description{
-    font-size:1.1rem;
-    line-height:1.8;
-    max-width:650px;
-    margin:auto;
-    color:#666;
+.hero-inner{
+    position:relative;
+    z-index:2;
+    max-width:720px;
+    margin:0 auto;
+    text-align:center;
 }
 
-.stats{
+.tc-eyebrow.on-dark{
+    color:var(--clay);
+    border:1px solid var(--line);
+    padding:7px 16px;
+    border-radius:30px;
+    margin-bottom:28px;
+}
+
+.hero h1{
+    font-size:clamp(2.6rem, 6vw, 4.4rem);
+    line-height:1.02;
+    margin-bottom:18px;
+}
+
+.hero .tagline{
+    font-size:1.25rem;
+    color:var(--chalk);
+    opacity:.82;
+    margin-bottom:22px;
+    font-style:italic;
+    font-family:'Fraunces',serif;
+    font-weight:400;
+}
+
+.hero .lede{
+    font-size:1.05rem;
+    line-height:1.75;
+    color:var(--chalk);
+    opacity:.72;
+    max-width:560px;
+    margin:0 auto 48px;
+}
+
+/* scoreboard */
+.scoreboard{
     display:flex;
     justify-content:center;
-    gap:40px;
-    margin:45px 0;
-    flex-wrap:wrap;
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    border-radius:14px;
+    overflow:hidden;
+    margin:0 auto 48px;
+    max-width:560px;
 }
 
-.stat{
-    padding:15px 25px;
-    border:1px solid #ddd;
-    border-radius:15px;
-    min-width:150px;
-    transition:.3s;
+.score-cell{
+    flex:1;
+    background:var(--clubhouse);
+    padding:22px 10px;
+    transition:background .3s ease;
 }
 
-.stat:hover{
-    background:#111;
-    color:#fff;
+.score-cell:hover{
+    background:var(--clubhouse-2);
 }
 
-.stat h2{
-    font-size:2rem;
-    margin-bottom:8px;
+.score-cell .num{
+    font-family:'Space Mono',monospace;
+    font-weight:700;
+    font-size:2.1rem;
+    color:var(--chalk);
+    display:block;
 }
 
-.stat p{
-    color:inherit;
+.score-cell .label{
+    font-family:'Space Mono',monospace;
+    font-size:0.68rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--chalk);
+    opacity:.6;
 }
 
 .btn{
     display:inline-block;
-    margin-top:20px;
-    padding:15px 40px;
-    background:#111;
-    color:#fff;
+    padding:16px 38px;
+    background:var(--clay);
+    color:var(--chalk);
     text-decoration:none;
-    font-weight:bold;
-    border:2px solid #111;
+    font-weight:600;
+    border:1px solid var(--clay);
     border-radius:50px;
-    transition:.3s;
-    font-size:18px;
+    font-size:1rem;
+    transition:transform .25s ease, background .25s ease, color .25s ease;
 }
 
-.btn:hover{
-    background:#fff;
-    color:#111;
-    transform:translateY(-5px);
-    box-shadow:0 10px 25px rgba(0,0,0,.15);
+.btn:hover,
+.btn:focus-visible{
+    background:transparent;
+    color:var(--chalk);
+    transform:translateY(-3px);
 }
 
-@media(max-width:768px){
-
-.card{
-    padding:40px 25px;
+.btn:focus-visible{
+    outline:2px solid var(--chalk);
+    outline-offset:3px;
 }
 
-h1{
-    font-size:2.7rem;
-}
-
-.subtitle{
-    font-size:1.2rem;
-}
-
-.stats{
-    gap:20px;
-}
-
-.stat{
+/* court-line art + serve animation */
+.court-art{
+    position:absolute;
+    inset:0;
     width:100%;
+    height:100%;
+    z-index:1;
+    opacity:.9;
 }
 
+.court-line{
+    fill:none;
+    stroke:var(--line);
+    stroke-width:1.5;
 }
 
+.serve-path{
+    fill:none;
+    stroke:rgba(245,241,228,0.35);
+    stroke-width:1.5;
+    stroke-dasharray:6 8;
+}
+
+.serve-ball{
+    fill:var(--clay);
+}
+
+@media (prefers-reduced-motion: no-preference){
+    .serve-ball{
+        animation:serve 2.6s cubic-bezier(.55,0,.2,1) 1;
+        animation-fill-mode:forwards;
+    }
+}
+
+@keyframes serve{
+    0%{ offset-distance:0%; }
+    100%{ offset-distance:100%; }
+}
+
+/* ---------- ABOUT ---------- */
+.about{
+    max-width:1040px;
+    margin:0 auto;
+    padding:100px 24px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:64px;
+    align-items:center;
+}
+
+.about h2{
+    font-size:2.2rem;
+    margin-bottom:22px;
+}
+
+.about p{
+    color:var(--muted);
+    line-height:1.8;
+    font-size:1.02rem;
+    margin-bottom:16px;
+}
+
+.about-facts{
+    border-top:1px solid var(--border-light);
+    padding-top:24px;
+    margin-top:8px;
+    display:grid;
+    gap:14px;
+}
+
+.about-facts div{
+    display:flex;
+    justify-content:space-between;
+    font-size:0.95rem;
+    padding-bottom:14px;
+    border-bottom:1px solid var(--border-light);
+}
+
+.about-facts span:first-child{ color:var(--muted); }
+.about-facts span:last-child{ font-family:'Space Mono',monospace; font-weight:700; }
+
+.about-visual{
+    aspect-ratio:1/1;
+    border-radius:20px;
+    background:var(--turf);
+    position:relative;
+    overflow:hidden;
+}
+
+.about-visual svg{ width:100%; height:100%; }
+
+/* ---------- PROGRAMS ---------- */
+.programs{
+    background:#fbfaf5;
+    border-top:1px solid var(--border-light);
+    border-bottom:1px solid var(--border-light);
+    padding:100px 24px;
+}
+
+.programs-head{
+    max-width:1040px;
+    margin:0 auto 56px;
+    text-align:center;
+}
+
+.programs-head h2{ font-size:2.2rem; margin-bottom:14px; }
+.programs-head p{ color:var(--muted); max-width:520px; margin:0 auto; }
+
+.programs-grid{
+    max-width:1040px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:1px;
+    background:var(--border-light);
+    border:1px solid var(--border-light);
+}
+
+.program-card{
+    background:#fbfaf5;
+    padding:36px 26px;
+    transition:background .25s ease;
+}
+
+.program-card:hover{
+    background:#fff;
+}
+
+.program-card .tag{
+    font-family:'Space Mono',monospace;
+    font-size:0.7rem;
+    letter-spacing:0.1em;
+    color:var(--clay);
+    text-transform:uppercase;
+    margin-bottom:16px;
+    display:block;
+}
+
+.program-card h3{
+    font-size:1.15rem;
+    margin-bottom:10px;
+}
+
+.program-card p{
+    color:var(--muted);
+    font-size:0.92rem;
+    line-height:1.65;
+}
+
+/* ---------- CTA BANNER ---------- */
+.cta-banner{
+    background:var(--clubhouse);
+    color:var(--chalk);
+    text-align:center;
+    padding:90px 24px;
+}
+
+.cta-banner h2{
+    font-size:2rem;
+    margin-bottom:14px;
+}
+
+.cta-banner p{
+    color:var(--chalk);
+    opacity:.72;
+    max-width:480px;
+    margin:0 auto 34px;
+    line-height:1.7;
+}
+
+@media(max-width:860px){
+    .about{ grid-template-columns:1fr; }
+    .programs-grid{ grid-template-columns:1fr 1fr; }
+}
+
+@media(max-width:560px){
+    .hero{ padding:70px 20px 90px; }
+    .scoreboard{ flex-wrap:wrap; }
+    .score-cell{ flex-basis:33%; }
+    .programs-grid{ grid-template-columns:1fr; }
+    .about{ padding:70px 20px; }
+}
 </style>
 
-<div class="hero">
+<div class="tc-page">
 
-    <div class="card">
+    <section class="hero">
 
-        <span class="badge">
-            🎾 Welcome to the Club
-        </span>
+        <svg class="court-art" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect class="court-line" x="60" y="40" width="680" height="420" rx="4"/>
+            <line class="court-line" x1="60" y1="140" x2="740" y2="140"/>
+            <line class="court-line" x1="60" y1="360" x2="740" y2="360"/>
+            <line class="court-line" x1="400" y1="40" x2="400" y2="460"/>
+            <line class="court-line" x1="400" y1="140" x2="400" y2="360" stroke-width="2"/>
+            <path class="serve-path" d="M 150 40 Q 400 260 650 460" id="servePath"/>
+            <circle class="serve-ball" r="7" style="offset-path:path('M 150 40 Q 400 260 650 460');"/>
+        </svg>
 
-        <h1>My Tennis Club</h1>
+        <div class="hero-inner">
 
-        <p class="subtitle">
-            Every Match. Every Rally. Every Champion.
-        </p>
+            <span class="tc-eyebrow on-dark">🎾 A Local Tennis Club</span>
 
-        <p class="description">
-            Join our passionate tennis community where players of all skill levels
-            train, compete, and improve together. Discover our talented members,
-            exciting tournaments, and unforgettable moments on the court.
-        </p>
+            <h1>My Tennis Club</h1>
 
-        <div class="stats">
-            <div class="stat">
-                <h2>50+</h2>
-                <p>Members</p>
+            <p class="tagline">Every match. Every rally. Every champion.</p>
+
+            <p class="lede">
+                A home court for players who love the game at every level — from first serve to
+                match point. We train together, compete together, and celebrate every win on the way.
+            </p>
+
+            <div class="scoreboard">
+                <div class="score-cell">
+                    <span class="num">50+</span>
+                    <span class="label">Members</span>
+                </div>
+                <div class="score-cell">
+                    <span class="num">20+</span>
+                    <span class="label">Tournaments</span>
+                </div>
+                <div class="score-cell">
+                    <span class="num">10+</span>
+                    <span class="label">Years</span>
+                </div>
             </div>
 
-            <div class="stat">
-                <h2>20+</h2>
-                <p>Tournaments</p>
-            </div>
+            <a href="{% url 'members' %}" class="btn">View Members →</a>
 
-            <div class="stat">
-                <h2>10+</h2>
-                <p>Years of Excellence</p>
+        </div>
+
+    </section>
+
+    <section class="about">
+
+        <div class="about-visual">
+            <svg viewBox="0 0 300 300" aria-hidden="true">
+                <rect x="20" y="20" width="260" height="260" fill="none" stroke="#f5f1e4" stroke-opacity="0.35" stroke-width="2"/>
+                <line x1="20" y1="70" x2="280" y2="70" stroke="#f5f1e4" stroke-opacity="0.35" stroke-width="2"/>
+                <line x1="20" y1="230" x2="280" y2="230" stroke="#f5f1e4" stroke-opacity="0.35" stroke-width="2"/>
+                <line x1="150" y1="20" x2="150" y2="280" stroke="#f5f1e4" stroke-opacity="0.35" stroke-width="2"/>
+                <line x1="150" y1="70" x2="150" y2="230" stroke="#f5f1e4" stroke-opacity="0.6" stroke-width="3"/>
+            </svg>
+        </div>
+
+        <div>
+            <h2>Built by players, for players</h2>
+            <p>
+                My Tennis Club started as a handful of friends splitting court time on weekends.
+                Ten years on, it's a full community: junior academy graduates who now coach,
+                weekday leagues that never miss a season, and a clubhouse that's busiest right
+                after the last match of the day.
+            </p>
+            <p>
+                Whatever brought you to tennis — a school team, a rusty racket in the garage,
+                or a friend who wouldn't stop talking about their backhand — there's a place
+                for you on our courts.
+            </p>
+
+            <div class="about-facts">
+                <div><span>Courts</span><span>6 (clay &amp; hard)</span></div>
+                <div><span>Open</span><span>7 days / week</span></div>
+                <div><span>Coaching staff</span><span>4 certified pros</span></div>
             </div>
         </div>
 
-        <a href="{% url 'members' %}" class="btn">
-            View Members →
-        </a>
+    </section>
 
-    </div>
+    <section class="programs">
+
+        <div class="programs-head">
+            <h2>Find your game</h2>
+            <p>Four ways to get on the court, whatever your level or schedule.</p>
+        </div>
+
+        <div class="programs-grid">
+
+            <div class="program-card">
+                <span class="tag">Ages 8–17</span>
+                <h3>Junior Academy</h3>
+                <p>Structured coaching from first swing to competitive play, with pathways into regional juniors.</p>
+            </div>
+
+            <div class="program-card">
+                <span class="tag">All levels</span>
+                <h3>Adult Leagues</h3>
+                <p>Weekday and weekend ladders, doubles nights, and a season-end round robin everyone talks about.</p>
+            </div>
+
+            <div class="program-card">
+                <span class="tag">1:1 &amp; small group</span>
+                <h3>Private Coaching</h3>
+                <p>Work one-on-one with our pros on serve mechanics, footwork, or match strategy.</p>
+            </div>
+
+            <div class="program-card">
+                <span class="tag">Open entry</span>
+                <h3>Club Tournaments</h3>
+                <p>Twenty-plus events a year, from friendly round robins to our seeded annual championship.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="cta-banner">
+        <h2>Ready to play?</h2>
+        <p>Meet the members already booking courts, joining leagues, and showing up for match day.</p>
+        <a href="{% url 'members' %}" class="btn">View Members →</a>
+    </section>
 
 </div>
 
