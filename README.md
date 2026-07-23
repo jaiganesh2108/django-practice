@@ -4,6 +4,9 @@
 
 A collection of Django practice projects and exercises to learn the Django web framework. This repository contains examples covering models, views, templates, authentication, forms, CRUD operations, and REST APIs.
 
+<img width="600" height="300" alt="Screenshot (14)" src="https://github.com/user-attachments/assets/de39cb13-098c-4bd5-b6db-24d2c8a7e488" />
+<img width="600" height="300" alt="Screenshot (15)" src="https://github.com/user-attachments/assets/bee06c1e-17da-4880-acda-26f9bff7f1df" />
+
 ## 🚀 Features
 
 - Django project setup
